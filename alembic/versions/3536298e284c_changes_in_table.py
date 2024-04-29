@@ -1,8 +1,8 @@
-"""Initial migration
+"""changes in table
 
-Revision ID: f626aaac3109
+Revision ID: 3536298e284c
 Revises: 
-Create Date: 2024-04-27 16:46:15.717166
+Create Date: 2024-04-29 13:50:02.919604
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'f626aaac3109'
+revision: str = '3536298e284c'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -39,6 +39,7 @@ def upgrade() -> None:
     sa.Column('sender_id', sa.UUID(), nullable=True),
     sa.Column('recipient_id', sa.UUID(), nullable=True),
     sa.Column('amount', sa.Float(), nullable=False),
+    sa.Column('transaction_type', sa.String(), nullable=False),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('wallet_id', sa.UUID(), nullable=True),
     sa.ForeignKeyConstraint(['recipient_id'], ['users.id'], ),

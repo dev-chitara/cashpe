@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import Column, UUID, ForeignKey, Float, DateTime
+from sqlalchemy import Column, UUID, String, ForeignKey, Float, DateTime
 from sqlalchemy.orm import Relationship
 
 from db_setup import Base
@@ -13,6 +13,7 @@ class Transaction(Base):
     sender_id = Column(UUID, ForeignKey("users.id"))
     recipient_id = Column(UUID, ForeignKey("users.id"))
     amount = Column(Float, nullable=False)
+    transaction_type = Column(String, nullable=False)
     timestamp = Column(DateTime, default=datetime.utcnow)
     wallet_id = Column(UUID, ForeignKey("wallets.id"))
 

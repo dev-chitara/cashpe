@@ -5,6 +5,11 @@ from pydantic import BaseModel, PositiveFloat
 
 class BaseTransactionSchema(BaseModel):
     amount: PositiveFloat
+    transaction_type: str
+
+
+class DepositeTransactionSchema(BaseTransactionSchema):
+    pass
 
 
 class CreateTransactionSchema(BaseTransactionSchema):
@@ -13,8 +18,8 @@ class CreateTransactionSchema(BaseTransactionSchema):
 
 class GetTransactionSchema(BaseTransactionSchema):
     id: UUID
-    sender_id: UUID
-    recipient_id: UUID
+    sender_id: UUID | None=None
+    recipient_id: UUID | None=None
     wallet_id: UUID
 
     class Config:
